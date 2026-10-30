@@ -21,9 +21,9 @@ GO
 
 -- 1. Dimensión Tiempo
 CREATE TABLE DimTiempo (
-    IdTiempoPK NCHAR(6) NOT NULL,
-    Fecha DATE NOT NULL,
-    Anio INT NOT NULL,
+    IdTiempoPK		NCHAR(6) NOT NULL,
+    Fecha			DATE NOT NULL,
+    Anio			INT NOT NULL,
     Trimestre VARCHAR(15) NOT NULL,
     Mes VARCHAR(20) NOT NULL,
     DiaSemana VARCHAR(15) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE DimRuta (
     CiudadOrigen VARCHAR(50) NOT NULL,
     CiudadDestino VARCHAR(50) NOT NULL,
     DistanciaKm DECIMAL(8,2) NOT NULL,
-    DuracionEstimadaMin INT NOT NULL,
+    DuracionMin INT NOT NULL,
     CONSTRAINT PK_DimRuta PRIMARY KEY (IdRutaPK)
 );
 GO
