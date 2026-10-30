@@ -2,17 +2,17 @@ USE master;
 GO
 
 -- Validación para eliminar y recrear la base de datos sin conflictos de conexiones activas
-IF EXISTS (SELECT name FROM sys.databases WHERE name = N'BD_Avianca')
+IF EXISTS (SELECT name FROM sys.databases WHERE name = N'BDAerolineas')
 BEGIN
-    ALTER DATABASE BD_Avianca SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-    DROP DATABASE BD_Avianca;
+    ALTER DATABASE BDAerolineas SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE BDAerolineas;
 END
 GO
 
-CREATE DATABASE BD_Avianca;
+CREATE DATABASE BDAerolineas;
 GO
 
-USE BD_Avianca;
+USE BDAerolineas;
 GO
 
 -- =========================================================================
