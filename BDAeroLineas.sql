@@ -24,11 +24,11 @@ CREATE TABLE DimTiempo (
     IdTiempoPK		NCHAR(6)		NOT NULL,
     Fecha			DATE			NOT NULL,
     Anio			INT				NOT NULL,
-    Trimestre		VARCHAR(15)		NOT NULL,
-    Mes				VARCHAR(20)		NOT NULL,
-    DiaSemana		VARCHAR(15)		NOT NULL,
-    EstacionAnio	VARCHAR(20)		NOT NULL,
-    FranjaHoraria	VARCHAR(20)		NOT NULL,
+    Trimestre		NVARCHAR(15)		NOT NULL,
+    Mes				NVARCHAR(20)		NOT NULL,
+    DiaSemana		NVARCHAR(15)		NOT NULL,
+    EstacionAnio	NVARCHAR(20)		NOT NULL,
+    FranjaHoraria	NVARCHAR(20)		NOT NULL,
     CONSTRAINT PK_DimTiempo PRIMARY KEY (IdTiempoPK)
 );
 GO
@@ -36,10 +36,10 @@ GO
 -- 2. Dimensión Aeropuerto
 CREATE TABLE DimAeropuerto (
     IdAeropuertoPK				NCHAR(6)		NOT NULL,
-    CodigoIATA					CHAR(3)			NOT NULL,
-    NombreAeropuerto			VARCHAR(100)	NOT NULL,
-    Ciudad						VARCHAR(50)		NOT NULL,
-    Departamento				VARCHAR(50)		NOT NULL,
+    CodigoIATA					NCHAR(3)			NOT NULL,
+    NombreAeropuerto			NVARCHAR(100)	NOT NULL,
+    Ciudad						NVARCHAR(50)		NOT NULL,
+    Departamento				NVARCHAR(50)		NOT NULL,
     CapacidadOperativaHora		INT				NOT NULL,
     CONSTRAINT PK_DimAeropuerto PRIMARY KEY (IdAeropuertoPK)
 );
@@ -48,9 +48,9 @@ GO
 -- 3. Dimensión Ruta
 CREATE TABLE DimRuta (
     IdRutaPK		NCHAR(6)		NOT NULL,
-    CodigoRuta		VARCHAR(15)		NOT NULL,
-    CiudadOrigen	VARCHAR(50)		NOT NULL,
-    CiudadDestino	VARCHAR(50)		NOT NULL,
+    CodigoRuta		NVARCHAR(15)		NOT NULL,
+    CiudadOrigen	NVARCHAR(50)		NOT NULL,
+    CiudadDestino	NVARCHAR(50)		NOT NULL,
     DistanciaKm		DECIMAL(8,2)	NOT NULL,
     DuracionMin		INT				NOT NULL,
     CONSTRAINT PK_DimRuta PRIMARY KEY (IdRutaPK)
@@ -60,8 +60,8 @@ GO
 -- 4. Dimensión Aeronave
 CREATE TABLE DimAeronave (
     IdAeronavePK			NCHAR(6)		NOT NULL,
-    Matricula				VARCHAR(15)		NOT NULL,
-    Modelo					VARCHAR(50)		NOT NULL,
+    Matricula				NVARCHAR(15)		NOT NULL,
+    Modelo					NVARCHAR(50)		NOT NULL,
     CapacidadPasajeros		INT				NOT NULL,
     ConsumoPromedioGalHora	DECIMAL(8,2)	NOT NULL,
     CONSTRAINT PK_DimAeronave PRIMARY KEY (IdAeronavePK)
@@ -71,11 +71,11 @@ GO
 -- 5. Dimensión Tripulación
 CREATE TABLE DimTripulacion (
     IdTripulacionPK			NCHAR(6)		NOT NULL,
-    CodigoEquipo			VARCHAR(15)		NOT NULL,
-    CapitanCargo			VARCHAR(80)		NOT NULL,
+    CodigoEquipo			NVARCHAR(15)		NOT NULL,
+    CapitanCargo			NVARCHAR(80)		NOT NULL,
     HorasVueloAcumuladas	INT				NOT NULL,
-    NivelFatiga				VARCHAR(20)		NOT NULL,
-    TurnoOperativo			VARCHAR(20)		NOT NULL,
+    NivelFatiga				NVARCHAR(20)		NOT NULL,
+    TurnoOperativo			NVARCHAR(20)		NOT NULL,
     CONSTRAINT PK_DimTripulacion PRIMARY KEY (IdTripulacionPK)
 );
 GO
@@ -95,9 +95,9 @@ GO
 -- 7. Dimensión Fenómeno Climático
 CREATE TABLE DimFenomenoClimatico (
     IdFenomenoPK		NCHAR(6)		NOT NULL,
-    NombreFenomeno		VARCHAR(60)		NOT NULL,
-    TipoAnomalia		VARCHAR(50)		NOT NULL,
-    NivelSeveridad		VARCHAR(25)		NOT NULL,
+    NombreFenomeno		NVARCHAR(60)		NOT NULL,
+    TipoAnomalia		NVARCHAR(50)		NOT NULL,
+    NivelSeveridad		NVARCHAR(25)		NOT NULL,
     CONSTRAINT PK_DimFenomenoClimatico PRIMARY KEY (IdFenomenoPK)
 );
 GO
@@ -105,9 +105,9 @@ GO
 -- 8. Dimensión Causa de Demora
 CREATE TABLE DimCausaDemora (
     IdCausaPK				NCHAR(6)		NOT NULL,
-    DescripcionCausa		VARCHAR(100)	NOT NULL,
-    CategoriaCausa			VARCHAR(40)		NOT NULL,
-    AplicaIndemnizacion		CHAR(2)			NOT NULL,
+    DescripcionCausa		NVARCHAR(100)	NOT NULL,
+    CategoriaCausa			NVARCHAR(40)		NOT NULL,
+    AplicaIndemnizacion		NCHAR(2)			NOT NULL,
     CONSTRAINT PK_DimCausaDemora PRIMARY KEY (IdCausaPK)
 );
 GO
@@ -115,9 +115,9 @@ GO
 -- 9. Dimensión Estado de Vuelo
 CREATE TABLE DimEstadoVuelo (
     IdEstadoPK					NCHAR(6)		NOT NULL,
-    NumeroVuelo					VARCHAR(15)		NOT NULL,
-    EstadoOperacion				VARCHAR(30)		NOT NULL,
-    NivelImpactoItinerario		VARCHAR(30)		NOT NULL,
+    NumeroVuelo					NVARCHAR(15)		NOT NULL,
+    EstadoOperacion				NVARCHAR(30)		NOT NULL,
+    NivelImpactoItinerario		NVARCHAR(30)		NOT NULL,
     CONSTRAINT PK_DimEstadoVuelo PRIMARY KEY (IdEstadoPK)
 );
 GO
@@ -387,3 +387,5 @@ INSERT INTO FactDemoraVuelo (
 ('FAC099', 'TIE010', 'AER005', 'RUT009', 'NAV002', 'TRI003', 'CLI003', 'FEN003', 'CAU002', 'EST001', 60, 65, 125, 2910.00, 1550.00, 0.00, 165),
 ('FAC100', 'TIE010', 'AER008', 'RUT010', 'NAV003', 'TRI004', 'CLI004', 'FEN004', 'CAU001', 'EST002', 35, 40, 75, 1770.00, 1000.00, 0.00, 155);
 GO
+
+SELECT * FROM FactDemoraVuelo
